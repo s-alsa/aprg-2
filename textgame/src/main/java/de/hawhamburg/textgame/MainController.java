@@ -1,5 +1,6 @@
 package de.hawhamburg.textgame;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +10,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
-    @GetMapping("/start")
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    MainController(UserRepository userRepository, QuestionRepository questionRepository) {
+        this.userRepository = userRepository;
+        this.questionRepository = questionRepository;
+    }
+
+    @GetMapping("/")
     public String startPage() {
         return "start";
+    }
+
+    @GetMapping("/welcome")
+    public String welcomePage() {
+        return "welcome";
     }
 
     @GetMapping("/signup")
     public String signUp() {
         return "signup";
+    }
+
+    @GetMapping("/wouldyourather")
+    public String wouldYouRather() { return "wouldyourather"; }
+
+    @PostMapping("/wouldyourather")
+    public String postLogin(Model model, @RequestParam("username") String username) {
+        UserAccount newUser = new UserAccount(username);
+        userRepository.save(newUser);
+        return "wouldyourather";
     }
 
     @PostMapping("/create1")
@@ -26,9 +52,7 @@ public class MainController {
     }
 
     @GetMapping("/create1")
-    public String characterRecreation() {
-        return "character";
-    }
+    public String characterRecreation() { return "character"; }
 
     @GetMapping("/create2")
     public String characterBody() { return "body"; }
@@ -39,19 +63,9 @@ public class MainController {
     @GetMapping("/profile")
     public String userProfile() { return "profile"; }
 
-    @GetMapping("/quiz")
-    public String startGame() {
-        return "quiz";
-    }
-
     @GetMapping("/results")
     public String resultScreen() {
         return "results";
-    }
-
-    @GetMapping("/play")
-    public String playground() {
-        return "play";
     }
 
 }
