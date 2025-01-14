@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS UserAccounts;
+DROP TABLE IF EXISTS Usernames;
 
-CREATE TABLE UserAccounts (
+CREATE TABLE Usernames (
   id LONG PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(100) NOT NULL--,
 );

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsernameRepository usernameRepository;
     @Autowired
     private QuestionRepository questionRepository;
 
-    MainController(UserRepository userRepository, QuestionRepository questionRepository) {
-        this.userRepository = userRepository;
+    MainController(UsernameRepository usernameRepository, QuestionRepository questionRepository) {
+        this.usernameRepository = usernameRepository;
         this.questionRepository = questionRepository;
     }
 
@@ -40,8 +40,8 @@ public class MainController {
 
     @PostMapping("/wouldyourather")
     public String postLogin(Model model, @RequestParam("username") String username) {
-        UserAccount newUser = new UserAccount(username);
-        userRepository.save(newUser);
+        QuizUser newUser = new QuizUser(username);
+        usernameRepository.save(newUser);
         return "wouldyourather";
     }
 
