@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class MainController {
 
@@ -36,13 +38,33 @@ public class MainController {
     }
 
     @GetMapping("/wouldyourather")
-    public String wouldYouRather() { return "wouldyourather"; }
+    public String displayQuestions(Model model) {
+        List<Question> questions = questionRepository.findAll();
+        model.addAttribute("questions", questions);
+        return "wouldyourather";
+    }
 
     @PostMapping("/wouldyourather")
     public String postLogin(Model model, @RequestParam("username") String username) {
         QuizUser newUser = new QuizUser(username);
         usernameRepository.save(newUser);
+
+        List<Question> questions = questionRepository.findAll();
+        model.addAttribute("questions", questions);
+
         return "wouldyourather";
+    }
+
+    @GetMapping("/results")
+    public String resultScreen() {
+        return "results";
+    }
+
+    //alt
+
+    @GetMapping("quiz")
+    public String quizPage() {
+        return "quiz";
     }
 
     @PostMapping("/create1")
@@ -62,10 +84,5 @@ public class MainController {
 
     @GetMapping("/profile")
     public String userProfile() { return "profile"; }
-
-    @GetMapping("/results")
-    public String resultScreen() {
-        return "results";
-    }
 
 }

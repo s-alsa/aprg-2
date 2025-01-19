@@ -11,13 +11,25 @@
 <body>
 
     <h1>would you rather...</h1>
+
+    <ol>
+        {{#questions}}
+            <li>
+                <input type="radio" name="{{id}}" value="A"> ...{{option1}}
+                <br>
+                <div style="text-indent: 30px;">
+                    <i><b>or</b></i>
+                </div>
+                <input type="radio" name="{{id}}" value="B"> {{option2}}?
+                <br><br><br>
+            </li>
+        {{/questions}}
+    </ol>
+
     <a href="/results">
-        <button>(hier text option 1)</button>
+        <button>fertig &check;</button>
     </a>
-    <p>OR</p>
-    <a href="/results">
-        <button>(hier text option 2)</button>
-    </a>
+    <br>
 
 </body>
 

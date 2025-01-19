@@ -12,15 +12,16 @@ public class Question {
     private String option1;
     private String option2;
 
-    private String option1Id;
-    private String option2Id;
+    private String option1_id;
+    private String option2_id;
 
-    Question(String option1, String option2, String option1Id, String option2Id) {
+    Question(String option1, String option2, String option1_id, String option2_id) {
         this.option1 = option1;
         this.option2 = option2;
-        this.option1Id = option1Id;
-        this.option2Id = option2Id;
+        this.option1_id = option1_id;
+        this.option2_id = option2_id;
     }
+
 
 
 
