@@ -55,4 +55,15 @@ public class MainController {
         return "results";
     }
 
+    @GetMapping("/user")
+    public String userPage() {
+        return "user";
+    }
+
+    @GetMapping("/secretgame")
+    public String secretgamePage() {
+        return "secretgame";
+    }
+
+
 }

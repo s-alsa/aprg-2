@@ -26,13 +26,15 @@ class AuthorizationConfig {
         http.logout(logout -> logout.logoutSuccessUrl("/")); // Show landing page after successful logout
 
         http.authorizeHttpRequests(authz -> authz
-            .requestMatchers("/admin").hasAuthority(Role.ADMIN) // This endpoint is only available for users with the ROLE_ADMIN.
+            .requestMatchers("/admin").hasAuthority(Role.ADMIN)
+                .requestMatchers("/secretgame").hasAuthority(Role.USER)
+                .requestMatchers("/user").hasAuthority(Role.USER)// This endpoint is only available for users with the ROLE_ADMIN.
             .requestMatchers("/secure").authenticated() // This endpoint is available for any logged-in user (regardless of the role).
             .requestMatchers("/styles.css").permitAll()
                 .requestMatchers("/wouldyourather.css").permitAll()
                 .requestMatchers("/results").permitAll()
                 .requestMatchers("/welcome").permitAll()
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/fonts/PixelifySans-Regular.ttf").permitAll()
                 .requestMatchers("/wouldyourather").permitAll()
                 .requestMatchers("/wouldyouratherPost").permitAll()// This is not an endpoint but access to other resources must be set as well. You may also use the * for multiple files, e.g., *.css or /img/*.*
             .requestMatchers("/").permitAll() // Make landing page publicly accessible
