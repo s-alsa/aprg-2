@@ -5,7 +5,7 @@
     <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
     <link href="styles.css" rel="stylesheet" />
-    <title>WOULD YOU RATHER</title>
+    <title>welcome</title>
     <style>
         body {padding: 150px;}
         * {
@@ -17,12 +17,13 @@
 </head>
 
 <body>
-<h1>"would you rather..."</h1>
-<h2>QUIZGAME</h2>
-<h3>test yourself!</h3>
-<a href="wouldyourather">
-    <button>START</button>
-</a>
+<h2>hallo!</h2>
+<h1>wie möchtest du heißen?</h1>
+<form action="/wouldyourather" method="post">
+    <label for="keyword">nutzername: </label>
+    <input type="text" name="username" id="username" required/>
+    <input type="submit" value=">"/>
+</form>
 </body>
 
 </html>

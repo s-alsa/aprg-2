@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
+    <link href="wouldyourather.css" rel="stylesheet" />
+    <title>would you rather...</title>
+</head>
+
+<body>
+
+    <h1>would you rather...</h1>
+
+    <ol>
+        {{#questions}}
+            <li>
+                <input type="radio" name="{{id}}" value="A"> ...{{option1}}
+                <br>
+                <div style="text-indent: 30px;">
+                    <i><b>or</b></i>
+                </div>
+                <input type="radio" name="{{id}}" value="B"> {{option2}}?
+                <br><br><br>
+            </li>
+        {{/questions}}
+    </ol>
+
+    <a href="/results">
+        <button>fertig &check;</button>
+    </a>
+    <br>
+
+</body>
+
+</html>
