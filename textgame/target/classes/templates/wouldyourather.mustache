@@ -3,37 +3,37 @@
 
 <head>
     <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
-    <link rel="stylesheet" href="./wouldyourather.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
+    <link href="wouldyourather.css" rel="stylesheet" />
     <title>would you rather...</title>
-
 </head>
 
 <body>
 
-    <h1>would you rather...</h1>
+<h1>would you rather...</h1>
 
+<form action="/results" method="post">
+    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
     <ol>
         {{#questions}}
             <li>
-                <input type="radio" name="{{id}}" value="A"> ...{{option1}}
+
+                <input type="radio" name="{{question_id}}-opt1" value="{{option1_id}}"> ...{{option1}}
                 <br>
                 <div style="text-indent: 30px;">
                     <i><b>or</b></i>
                 </div>
-                <input type="radio" name="{{id}}" value="B"> {{option2}}?
+                <input type="radio" name="{{question_id}}-opt2" value="{{option2_id}}"> {{option2}}?
                 <br><br><br>
             </li>
         {{/questions}}
     </ol>
-
-    <a href="/results">
-        <button>fertig &check;</button>
+    <a>
+        <button type="submit">fertig &check;</button>
     </a>
-    <br>
+</form>
 
-    <a href="/" class="center">
-        <label>Startseite</label>
-    </a>
+<br>
 
 </body>
 

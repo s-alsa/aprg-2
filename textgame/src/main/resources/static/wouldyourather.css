@@ -1,13 +1,5 @@
 * {
-}
-
-@font-face {
-        font-family: 'PixelifySans-Regular';
-        src: url('./fonts/PixelifySans-Regular.ttf') format('truetype');
-}
-
-body {
-        font-family: 'PixelifySans-Regular', sans-serif;
+        font-family: VT323;
 }
 
 p {font-size:125%;}

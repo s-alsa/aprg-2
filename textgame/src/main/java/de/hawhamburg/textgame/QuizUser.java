@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class QuizUser {
 
     @Id
-    private Long id;
+    private Long user_id;
 
     private String username;
 
@@ -16,3 +16,4 @@ public class QuizUser {
     }
 
 }
+
