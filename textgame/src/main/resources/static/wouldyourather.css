@@ -1,18 +1,17 @@
-* {
-}
 
 @font-face {
-        font-family: 'PixelifySans-Regular';
-        src: url('./fonts/PixelifySans-Regular.ttf') format('truetype');
+        font-family: 'VT323-Regular';
+        src: url('./fonts/VT323-Regular.ttf') format('truetype');
 }
 
 body {
-        font-family: 'PixelifySans-Regular', sans-serif;
+        font-family: 'VT323-Regular', sans-serif;
+        background:honeydew;
 }
 
-p {font-size:125%;}
-        ul {font-size:120%;}
-        body{background:honeydew;}
+p { font-size:125%; }
+
+ol { font-size:120%; }
 
 label {
         position:fixed;
@@ -21,6 +20,8 @@ label {
         font-size: 20px;
 }
 
-button {
-        background-color: lightblue;
+a {
+        font-size:120%;
 }
+
+button { background-color: lightblue; }

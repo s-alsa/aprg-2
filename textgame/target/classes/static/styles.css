@@ -3,20 +3,18 @@
 }
 
 @font-face {
-    font-family: 'PixelifySans-Regular';
-    src: url('./fonts/PixelifySans-Regular.ttf') format('truetype');
+    font-family: 'VT323-Regular';
+    src: url('./fonts/VT323-Regular.ttf') format('truetype');
 }
 
-
-
 body {
-    font-family: 'PixelifySans-Regular', sans-serif;
+    font-family: 'VT323-Regular', sans-serif;
 }
 
 button {
-    font-family: 'PixelifySans-Regular', sans-serif;
+    font-family: 'VT323-Regular', sans-serif;
     color: black;
-    background-color: white;
+    background-color: aliceblue;
     padding: 10px 20px;
     cursor: pointer;
 }
@@ -48,7 +46,7 @@ label#left {
 }
 
 #secret {
-    font-family: 'PixelifySans-Regular', sans-serif;
+    font-family: 'VT323-Regular', sans-serif;
     color: grey;
     background-color: honeydew;
     padding: 10px 20px;
