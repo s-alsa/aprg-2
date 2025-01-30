@@ -8,28 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
 
     @Autowired
-    private UsernameRepository usernameRepository;
-    @Autowired
     private QuestionRepository questionRepository;
 
-    MainController(UsernameRepository usernameRepository, QuestionRepository questionRepository) {
-        this.usernameRepository = usernameRepository;
+    MainController(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
 
     @GetMapping("/")
     public String startPage() {
         return "start";
-    }
-
-    @GetMapping("/welcome")
-    public String welcomePage() {
-        return "welcome";
     }
 
     @GetMapping("/wouldyourather")
@@ -39,19 +32,40 @@ public class MainController {
         return "wouldyourather";
     }
 
-    @PostMapping("/wouldyouratherPost")
-    public String postLogin(Model model, @RequestParam("username") String username) {
-        QuizUser newUser = new QuizUser(username);
-        usernameRepository.save(newUser);
+    @PostMapping("/results")
+    public String resultScreen(Model model, @RequestParam Map<String, String> selectedAnswers) {
 
-        List<Question> questions = questionRepository.findAll();
-        model.addAttribute("questions", questions);
+        double mainstreamAnswers = 0;
 
-        return "wouldyourather";
-    }
+        for (Question q : questionRepository.findAll()) {
 
-    @GetMapping("/results")
-    public String resultScreen() {
+            String selectedAnswer = selectedAnswers.get(q.getQuestionId() + "-answer");
+
+            int maxAnswerCount = Math.max(q.getAnswerCount1(), q.getAnswerCount2());
+            int selectedAnswerCount = 0;
+
+            if (selectedAnswer != null) {
+                if (selectedAnswer.equals(q.getOption1Id())) {
+                    selectedAnswerCount = q.getAnswerCount1();
+                    q.setAnswerCount1(q.getAnswerCount1() + 1);
+                } else if (selectedAnswer.equals(q.getOption2Id())) {
+                    selectedAnswerCount = q.getAnswerCount2();
+                    q.setAnswerCount2(q.getAnswerCount2() + 1);
+                }
+
+                if (selectedAnswerCount == maxAnswerCount) {
+                    mainstreamAnswers += 1;
+                }
+            }
+            questionRepository.save(q);
+        }
+
+        int totalQuestions = questionRepository.findAll().size();
+        double mainstreamMeter = (mainstreamAnswers / totalQuestions) * 100;
+
+        int mainstreamInt = (int) mainstreamMeter;
+        model.addAttribute("mainstreamMeter", mainstreamInt);
+
         return "results";
     }
 
@@ -64,6 +78,5 @@ public class MainController {
     public String secretgamePage() {
         return "secretgame";
     }
-
 
 }

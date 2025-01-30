@@ -12,27 +12,30 @@
 
     <h1>would you rather...</h1>
 
-    <ol>
-        {{#questions}}
-            <li>
-                <input type="radio" name="{{id}}" value="A"> ...{{option1}}
-                <br>
-                <div style="text-indent: 30px;">
-                    <i><b>or</b></i>
-                </div>
-                <input type="radio" name="{{id}}" value="B"> {{option2}}?
-                <br><br><br>
-            </li>
-        {{/questions}}
-    </ol>
+    <form action="/results" method="post">
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+        <ol>
+            {{#questions}}
+                <li>
 
-    <a href="/results">
-        <button>fertig &check;</button>
-    </a>
+                    <input type="radio" name="{{question_id}}-answer" value="{{option1_id}}"> ...{{option1}}
+                    <br>
+                    <div style="text-indent: 30px;">
+                        <i><b>or</b></i>
+                    </div>
+                    <input type="radio" name="{{question_id}}-answer" value="{{option2_id}}"> {{option2}}?
+                    <br><br><br>
+                </li>
+            {{/questions}}
+        </ol>
+        <a>
+            <button type="submit">FERTIG &check;</button>
+        </a>
+    </form>
     <br>
 
     <a href="/" class="center">
-        <label>Startseite</label>
+        <label>startseite</label>
     </a>
 
 </body>
